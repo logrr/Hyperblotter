@@ -76,6 +76,13 @@ module.exports = {
       },
       debug: true
     }, {
+      entries: src + '/javascript/logrr.js',
+      dest: dest,
+      outputName: 'logrr.js',
+      // list of externally available modules to exclude from the bundle
+      //external: ['underscore'],
+      debug: true
+    }, {
       entries: src + '/javascript/trade.js',
       dest: dest,
       outputName: 'trade.js',
