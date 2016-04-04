@@ -1,6 +1,7 @@
 var   express = require('express')
     , http = require('http')
     , path = require('path')
+    , bodyParser = require('body-parser')
     , saml = require('logrr-electron-auth').saml
     , samlExpress = require('logrr-electron-auth').samlExpress;
 
