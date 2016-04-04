@@ -10,6 +10,7 @@ var React = require('react'),
 var _windowManager = windowManager.getInstance(),
     animationWindows = _windowManager.getWindows(),
     blotter,
+    logrrWindow,
     inLoop = false,
     cubeSize = 185,
     locations = [],
@@ -82,6 +83,10 @@ fin.desktop.main(()=>{
 
     initBlotter().then(function(b){
         // do nothing, if you want the blotter to show automatically blotter.show();
+    });
+
+    initLogrrWindow().then(function(b){
+        // do nothing, if you want the Logrr to show automatically logrrWindow.show();
     });
 
     initAnimationWindows().then(function(val){
@@ -178,6 +183,29 @@ var initBlotter = function(){
     });
     return _blotterPromise
 }
+
+var initLogrrWindow = function(){
+    var _logrrWindowPromise = new Promise((resolve, reject)=>{
+        logrrWindow = new fin.desktop.Window({
+            name: 'logrr',
+            url: 'logrr.html',
+            autoShow: false,
+            defaultWidth: 970,
+            maxWidth: 970,
+            minWidth: 970,
+            maxHeight: 594,
+            defaultHeight: 594,
+            minHeight: 594,
+            resizable:false,
+            frame: false,
+            maximizable: false,
+            "icon": "http://demoappdirectory.openf.in/desktop/config/apps/OpenFin/HelloOpenFin/img/openfin.ico"
+        }, ()=>{
+            resolve();
+        })
+    });
+    return _logrrWindowPromise
+};
 
 var initWpfChart = function(){
 	fin.desktop.Application.getCurrent().getManifest(function (manifest) {
@@ -498,11 +526,15 @@ module.exports = React.createClass({
             return {text: "Minimise", style: {"display" :"none"}, css: "none", icon:"fa fa-sort-amount-desc"};
         }
     },
-    openGithub: function(){
-        fin.desktop.System.openUrlWithBrowser("https://github.com/openfin/Hyperblotter/tree/master", function () {
-        },function (err) {
-            console.log("Failed to open GitHub: " + err);
-        });
+    openLoginWithLogrr: function(){
+        if(!logrrWindow){
+            initLogrrWindow().then(function(b){
+                logrrWindow.show();
+            });
+        }else{
+            logrrWindow.show();
+            logrrWindow.bringToFront();
+        }
     },
     render: function(){
         return	<div className="main-bar">
@@ -551,9 +583,9 @@ module.exports = React.createClass({
                     </i>
                 </div>
                 <div>
-                    <i onClick={this.openGithub}>
-                        <TooTip legend="GitHub">
-                            <span className="fa fa-github-alt"></span>
+                    <i onClick={this.openLoginWithLogrr}>
+                        <TooTip legend="Login">
+                            <span className="fa fa-sign-in"></span>
                         </TooTip>
                     </i>
                 </div>

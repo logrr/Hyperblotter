@@ -72,8 +72,10 @@
     "xhr-browserify": "0.0.4"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.3",
     "jquery": "~2.1.0",
+    "logrr-electron-auth": "git+https://git@github.com/logrr/logrr-electron-auth.git",
     "underscore": "^1.8.3",
     "webpack": "1.12.11"
   }
