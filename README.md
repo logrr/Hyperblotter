@@ -26,7 +26,7 @@ Have a look at the image below to find the corresponding values on the Logrr Por
 
 ![Logrr settings](https://logrrcontent.blob.core.windows.net/images/appSetupProperties.png)
 
-Place these values by editing the **index.js** file replacing values as follows:
+Place these values by editing the **server.js** file replacing values as follows:
 
 Before:
 ```
